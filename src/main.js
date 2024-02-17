@@ -41,6 +41,16 @@ form.addEventListener("submit", (event) => {
     
 });
 
+const lightbox = new SimpleLightbox('.gallery a', {
+          captions: true,
+          captionType: 'attr',
+          captionsData: 'alt',
+          captionPosition: 'bottom',
+          fadeSpeed: 150,
+          captionSelector: "img",
+          captionDelay: 250,
+        });
+
 function searchImages(searchTerm) {
   const apiKey = '41764579-b97d65b31c0abd4efd9d4830e';
   const url = `https://pixabay.com/api/?key=${apiKey}&q=${searchTerm}&image_type=photo&orientation=horizontal&safesearch=true`;
@@ -75,15 +85,7 @@ function searchImages(searchTerm) {
           }).join('');
         
         gallery.insertAdjacentHTML("beforeend", markup);
-        const lightbox = new SimpleLightbox('.gallery a', {
-          captions: true,
-          captionType: 'attr',
-          captionsData: 'alt',
-          captionPosition: 'bottom',
-          fadeSpeed: 150,
-          captionSelector: "img",
-          captionDelay: 250,
-        });
+        
 
         lightbox.on('show.simplelightbox').refresh();
         hideLoader();
